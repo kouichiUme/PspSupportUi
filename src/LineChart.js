@@ -51,6 +51,11 @@ class LineChart extends Component {
 
         var svg = d3.select(ReactDOM.findDOMNode(this.svgRef.current))
 
+        let aData = [1, 2, 3, 4, 5]
+        d3.select("body").append("p").text("hogehoge foobar");
+        d3.select("body").selectAll("p").data(aData).enter().append("p").text(a => { return a })
+
+
         svg.attr("height", height)
             .attr("width", width);
 
