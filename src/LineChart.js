@@ -103,7 +103,14 @@ class LineChart extends Component {
 
         return (<svg ref={this.svgRef}>
             <path />
-        </svg>)
+        </svg>
+        
+        
+        
+        )
+
+
+
     }
 }
 

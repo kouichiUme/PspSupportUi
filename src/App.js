@@ -1,8 +1,9 @@
 import React from 'react';
 import logo from './logo.svg';
 import LineChart from './LineChart'
-
-
+import { Container, Row, Col } from 'react-bootstrap'
+import Nav from 'react-bootstrap/Nav';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 const data = [
@@ -14,7 +15,31 @@ const data = [
 function App() {
   return (
     <div className="App">
+      <Nav
+        activeKey="/home"
+        onSelect={(selectedKey) => alert(`selected ${selectedKey}`)}
+      >
+        <Nav.Item>
+          <Nav.Link href="/home">Active</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link-1">Link</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="link-2">Link</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="disabled" disabled>
+            Disabled
+    </Nav.Link>
+        </Nav.Item>
+      </Nav>
       <LineChart data={data} />
+      <Container>
+        <Row>
+          <Col>1 of 2</Col>
+        </Row>
+      </Container>
     </div>
   );
 }
