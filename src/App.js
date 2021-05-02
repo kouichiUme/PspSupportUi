@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 const data = [
-  [{ x: 0, y: 6 }, { x: 1, y: 9 }, { x: 2, y: 6 },{ x: 2, y: -3 },
+  [{ x: 0, y: 6 }, { x: 1, y: 9 }, { x: 2, y: 6 },
   { x: 3, y: 5 }, { x: 4, y: 2 }, { x: 6, y: 4 },
   { x: 7, y: 2 }, { x: 8, y: 5 }, { x: 9, y: 2 }]
 ];
@@ -17,19 +17,22 @@ const data = [
 function detPoints(p1, p2, p3) {
   let result = 0
 
-  // 1 
-  result = 1 * p1.x * p3.y - 1 * p1.y * p2.x;
+
+  // 1 p1.x p1.y
+  // 1 p2.x p2.y
+  // 1 p3.x p3.y
+  result = 1 * p2.x * p3.y -  p1.y * p2.x * 1; 
   // 2 
-  result += p1.x * p2.y * 1 - 1 * p3.x * p1.y;
+  result += - (p1.x *  1 * p3.y) +( 1 * p2.x * p1.x);
   // 
-  result += p1.y * 1 * p3.x - p2.y * 1 * p3.x;
+  result += p1.y * 1 * p3.x - (1* p2.y * p3.x);
 
   return result;
 }
 
 
 
-function ConvexHull() {
+function ConvexHullUpperHalf() {
   let points =
     data[0].sort((p, q) => { return p.x < q.x })
   points = data[0];
@@ -57,10 +60,42 @@ function ConvexHull() {
 
 }
 
+function convexHullLowerHalf(){
+  
+}
+
+
+//
+function findIntersection(){
+
+}
+
+
+//
+function handleEventPoint(){
+
+}
+
+// 
+function findNewEvent(){
+
+}
+
+// 
+function binarySearchTree(){
+
+
+
+}
+
+
+
+
+
 
 function App() {
 
-  let c = ConvexHull();
+  let c = ConvexHullUpperHalf();
 
   c.map(p => console.log(p))
 
