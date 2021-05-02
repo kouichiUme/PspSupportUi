@@ -7,6 +7,7 @@ import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
+
 const data = [
   [{ x: 0, y: 6 }, { x: 1, y: 9 }, { x: 2, y: 6 },
   { x: 3, y: 5 }, { x: 4, y: 2 }, { x: 6, y: 4 },
@@ -21,11 +22,11 @@ function detPoints(p1, p2, p3) {
   // 1 p1.x p1.y
   // 1 p2.x p2.y
   // 1 p3.x p3.y
-  result = 1 * p2.x * p3.y -  p1.y * p2.x * 1; 
+  result = 1 * p2.x * p3.y - p1.y * p2.x * 1;
   // 2 
-  result += - (p1.x *  1 * p3.y) +( 1 * p2.x * p1.x);
+  result += - (p1.x * 1 * p3.y) + (1 * p2.x * p1.x);
   // 
-  result += p1.y * 1 * p3.x - (1* p2.y * p3.x);
+  result += p1.y * 1 * p3.x - (1 * p2.y * p3.x);
 
   return result;
 }
@@ -60,33 +61,99 @@ function ConvexHullUpperHalf() {
 
 }
 
-function convexHullLowerHalf(){
+function convexHullLowerHalf() {
+
+}
+
+
+//
+function findIntersection() {
+  // priortity queue
+  let priorityQueue = new BSTree("1", "1");
+
+  // search
+  let result = priorityQueue.search("1")
+  console.log("key : %s , value : %s", result.key, result.value);
+
+  // test add node
+  priorityQueue.addNode(new BSTree("2","2"))
+
+  result = priorityQueue.search("2")
+
+
+  console.log("key : %s , value : %s", result.key, result.value);
+}
+
+
+//
+function handleEventPoint() {
+
+}
+
+// 
+function findNewEvent() {
+
+}
+
+// 
+
+class BSTree {
   
-}
+  constructor(cKey, cValue) {
+    this.left = null;
+    this.right = null;
+    this.parent = null;
+    this.key = cKey;
+    this.value = cValue;
+  }
+
+  // insert BSTree
+  addNode(bsTree) {
+
+    if (this.key > bsTree.key || this.key === bsTree.key) {
+      if (this.left === null) {
+        this.left = bsTree
+        bsTree.parent = this;
+      } else {
+        // left 
+        this.left.addNode(bsTree)
+      }
+    }
+
+    if (this.key < bsTree.key) {
+      if (this.right === null) {
+        this.right = bsTree;
+        bsTree.parent = this;
+      } else {
+        this.right.addNode(bsTree)
+      }
+    }
+  }
 
 
-//
-function findIntersection(){
 
-}
+  // Search tree 
+  search(key) {
+    if (this.key === key) {
+      return this;
+    }
+    if (this.key > key) {
+      if (this.left !== null) {
+        return this.left.search(key)
+      } else {
+        return null;
+      }
+    }
+    if (this.key < key) {
+      if (this.right !== null) {
+        return this.right.search(key)
+      } else {
+        return null
+      }
+    }
+  };
 
-
-//
-function handleEventPoint(){
-
-}
-
-// 
-function findNewEvent(){
-
-}
-
-// 
-function binarySearchTree(){
-
-
-
-}
+};
 
 
 
@@ -96,6 +163,8 @@ function binarySearchTree(){
 function App() {
 
   let c = ConvexHullUpperHalf();
+
+  let r = findIntersection();
 
   c.map(p => console.log(p))
 
