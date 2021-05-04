@@ -101,7 +101,7 @@ function testBstree() {
   result = result.predescessor()
   console.log("predescessor key : %s , value : %s", result.key, result.value);
 
-  result = priorityQueue.search("2")
+  result = priorityQueue.search("1")
   priorityQueue.deleteNode(result);
   result = priorityQueue.search("2")
   console.log("predescessor %s",result);
@@ -140,7 +140,7 @@ class BSTree {
 
   // insert BSTree
   addNode(bsTree) {
-    bsTree.root = this.root;
+
 
     if (this.key > bsTree.key || this.key === bsTree.key) {
       if (this.left === null) {
@@ -233,9 +233,6 @@ class BSTree {
 
     // exchange u and v 
     if (u.parent !== null) {
-      if (v !== null) {
-        v.parent = u.parent
-      }
       if (u.parent.left === u) {
         u.parent.left = v
       } else {
@@ -243,8 +240,12 @@ class BSTree {
       }
     } else {
       // u.parent is null root
-      this.root = v;
+      this.root = v;      
     }
+    if (v !== null) {
+      v.parent = u.parent
+    }
+
   }
 
 
