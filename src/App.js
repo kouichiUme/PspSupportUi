@@ -6,6 +6,7 @@ import Nav from 'react-bootstrap/Nav';
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import { timeThursday } from 'd3-time';
 
 
 const data = [
@@ -70,6 +71,8 @@ function convexHullLowerHalf() {
 function testBstree() {
   // priortity queue
   let priorityQueue = new BSTree("1", "1");
+  priorityQueue.root = priorityQueue;
+
 
   // search
   let result = priorityQueue.search("1")
@@ -80,8 +83,29 @@ function testBstree() {
 
   result = priorityQueue.search("2")
 
+  console.log("search 2 key : %s , value : %s", result.key, result.value);
 
-  console.log("key : %s , value : %s", result.key, result.value);
+
+  result = priorityQueue.min();
+  console.log("min key : %s , value : %s", result.key, result.value);
+
+  result = priorityQueue.max();
+  console.log("max key : %s , value : %s", result.key, result.value);
+
+
+  result = priorityQueue.search("2")
+  result = result.successor()
+  console.log("successor key : %s , value : %s", result.key, result.value);
+
+  result = priorityQueue.search("1")
+  result = result.predescessor()
+  console.log("predescessor key : %s , value : %s", result.key, result.value);
+
+  result = priorityQueue.search("2")
+  priorityQueue.deleteNode(result);
+  result = priorityQueue.search("2")
+  console.log("predescessor %s",result);
+
 }
 
 
@@ -116,6 +140,7 @@ class BSTree {
 
   // insert BSTree
   addNode(bsTree) {
+    bsTree.root = this.root;
 
     if (this.key > bsTree.key || this.key === bsTree.key) {
       if (this.left === null) {
@@ -138,19 +163,64 @@ class BSTree {
   }
 
   // 
-  min(){
+  min() {
+    let p = this
+    //
+    for (; p.left !== null; p = p.left) {
+
+    }
+
+    return p;
 
   }
 
-  max(){
+  max() {
+    let p = this
+
+    for (; p.right !== null; p = p.right) {
+    }
+    return p;
 
   }
 
-  successor(){
+  successor() {
+
+    if (this.right !== null) {
+      return this.right.min();
+    } else {
+      // only smaller value is in tree
+      // find node smallest max of tree 
+      let p = this.parent !== null ? this.parent : this;
+      let y = p;
+      for (let x = this; p !== null && p.right === x;) {
+        y = p;
+        x = p;
+        p = p.parent
+
+      }
+      return y;
+    }
 
   }
 
-  predescessor(){
+  predescessor() {
+    if (this.left !== null) {
+      return this.left.max();
+    } else {
+      // only smaller value is in tree
+      // find node biggest min of tree 
+      let p = this.parent !== null ? this.parent : this;
+      let y = p;
+      for (let x = this; p !== null && p.left === x;) {
+        y = p;
+        x = p;
+        p = p.parent
+
+      }
+      return y;
+    }
+
+
 
   }
 
@@ -163,7 +233,7 @@ class BSTree {
 
     // exchange u and v 
     if (u.parent !== null) {
-      if(v!== null){
+      if (v !== null) {
         v.parent = u.parent
       }
       if (u.parent.left === u) {
@@ -171,7 +241,7 @@ class BSTree {
       } else {
         u.parent.right = v
       }
-    }else{
+    } else {
       // u.parent is null root
       this.root = v;
     }
@@ -180,9 +250,39 @@ class BSTree {
 
   deleteNode(d) {
 
+    // if there is no left (smaller node) then we can right node
+    // d dont have smaller value
+    // then concat parent and right node;
+    if (d.left === null) {
+      this.transNode(d, d.right);
+      // also there is no right 
+    } else if (d.right === null) {
+      this.transNode(d, d.left);
 
+      // we has both node;
+      // then find sucessor of d.right and replace that against deleting node
+    } else {
+      // left is 
+      let m = d.right.min();
+      if (m.parent !== d) {
+        this.transNode(m, m.right)
+        m.right = d.right
+        m.right.p = m
+      }
+      this.transNode(d, m);
+      // 
+      m.left = d.left
+      m.left.parent = m
+
+    }
 
   }
+
+
+  // 
+
+
+
 
   // 
   pop() {
@@ -191,7 +291,7 @@ class BSTree {
       this.right.pop();
     } else {
       if (this.left !== null) {
-        this.parent
+        // this.parent
       }
 
       return this;
@@ -237,6 +337,8 @@ function App() {
   let c = ConvexHullUpperHalf();
 
   let r = findIntersection();
+
+  testBstree()
 
   c.map(p => console.log(p))
 
