@@ -67,7 +67,7 @@ function convexHullLowerHalf() {
 
 
 //
-function findIntersection() {
+function testBstree() {
   // priortity queue
   let priorityQueue = new BSTree("1", "1");
 
@@ -76,12 +76,18 @@ function findIntersection() {
   console.log("key : %s , value : %s", result.key, result.value);
 
   // test add node
-  priorityQueue.addNode(new BSTree("2","2"))
+  priorityQueue.addNode(new BSTree("2", "2"))
 
   result = priorityQueue.search("2")
 
 
   console.log("key : %s , value : %s", result.key, result.value);
+}
+
+
+function findIntersection(lines) {
+
+
 }
 
 
@@ -98,13 +104,14 @@ function findNewEvent() {
 // 
 
 class BSTree {
-  
+
   constructor(cKey, cValue) {
     this.left = null;
     this.right = null;
     this.parent = null;
     this.key = cKey;
     this.value = cValue;
+    this.root = null;
   }
 
   // insert BSTree
@@ -128,6 +135,71 @@ class BSTree {
         this.right.addNode(bsTree)
       }
     }
+  }
+
+  // 
+  min(){
+
+  }
+
+  max(){
+
+  }
+
+  successor(){
+
+  }
+
+  predescessor(){
+
+  }
+
+
+
+  // exchange u,v
+  // u is inside of tree 
+  // u will be replaced to v 
+  transNode(u, v) {
+
+    // exchange u and v 
+    if (u.parent !== null) {
+      if(v!== null){
+        v.parent = u.parent
+      }
+      if (u.parent.left === u) {
+        u.parent.left = v
+      } else {
+        u.parent.right = v
+      }
+    }else{
+      // u.parent is null root
+      this.root = v;
+    }
+  }
+
+
+  deleteNode(d) {
+
+
+
+  }
+
+  // 
+  pop() {
+
+    if (this.right !== null) {
+      this.right.pop();
+    } else {
+      if (this.left !== null) {
+        this.parent
+      }
+
+      return this;
+    }
+
+
+
+
   }
 
 
