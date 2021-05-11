@@ -125,6 +125,11 @@ function findNewEvent() {
 
 }
 
+
+function makeMonotone(){
+  
+}
+
 // 
 
 class BSTree {
@@ -287,20 +292,9 @@ class BSTree {
 
   // 
   pop() {
-
-    if (this.right !== null) {
-      this.right.pop();
-    } else {
-      if (this.left !== null) {
-        // this.parent
-      }
-
-      return this;
-    }
-
-
-
-
+    let max = this.max()
+    this.deleteNode(max)
+    return max;
   }
 
 
