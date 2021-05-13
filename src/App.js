@@ -127,7 +127,13 @@ function findNewEvent() {
 
 
 function makeMonotone(){
-  
+  let priorityQueue = new BSTree()
+
+    priorityQueue.addNode(new BSTree("1"))
+
+    while(priorityQueue.pop() !== null){
+      
+    }
 }
 
 // 
