@@ -108,8 +108,13 @@ function testBstree() {
 
 }
 
+class selfBalancedTree{
+  
+}
+
 
 function findIntersection(lines) {
+
 
 
 }
@@ -132,7 +137,7 @@ function makeMonotone(){
     priorityQueue.addNode(new BSTree("1"))
 
     while(priorityQueue.pop() !== null){
-      
+
     }
 }
 
