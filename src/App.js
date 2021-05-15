@@ -108,8 +108,8 @@ function testBstree() {
 
 }
 
-class selfBalancedTree{
-  
+class SelfBalancedTree{
+
 }
 
 
