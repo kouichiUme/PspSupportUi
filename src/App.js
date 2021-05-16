@@ -104,16 +104,37 @@ function testBstree() {
   result = priorityQueue.search("1")
   priorityQueue.deleteNode(result);
   result = priorityQueue.search("2")
-  console.log("predescessor %s",result);
+  console.log("predescessor %s", result);
 
 }
 
-class SelfBalancedTree{
+class SelfBalancedTree {
 
 }
 
 
 function findIntersection(lines) {
+
+  let eventPointQueue = new BSTree()
+
+  let stateStructure = new SelfBalancedTree();
+
+  eventPointQueue.addNode();
+
+
+
+  while ((p == eventPointQueue.pop()) !== null) {
+
+
+    handleEventPoint(p)
+
+
+  }
+
+
+
+
+
 
 
 
@@ -131,14 +152,14 @@ function findNewEvent() {
 }
 
 
-function makeMonotone(){
+function makeMonotone() {
   let priorityQueue = new BSTree()
 
-    priorityQueue.addNode(new BSTree("1"))
+  priorityQueue.addNode(new BSTree("1"))
 
-    while(priorityQueue.pop() !== null){
+  while (priorityQueue.pop() !== null) {
 
-    }
+  }
 }
 
 // 
@@ -256,7 +277,7 @@ class BSTree {
       }
     } else {
       // u.parent is null root
-      this.root = v;      
+      this.root = v;
     }
     if (v !== null) {
       v.parent = u.parent
