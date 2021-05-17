@@ -125,7 +125,7 @@ function findIntersection(lines) {
 
   while ((p == eventPointQueue.pop()) !== null) {
 
-
+    // ? selfBalanced treeがおかしい？
     handleEventPoint(p)
 
 
@@ -144,6 +144,9 @@ function findIntersection(lines) {
 //
 function handleEventPoint() {
 
+
+  findNewEvent()
+  
 }
 
 // 
