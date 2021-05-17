@@ -126,31 +126,36 @@ function findIntersection(lines) {
   while ((p == eventPointQueue.pop()) !== null) {
 
     // ? selfBalanced treeがおかしい？
-    handleEventPoint(p)
-
-
+    handleEventPoint(eventPointQueue,stateStructure,p)
   }
-
-
-
-
-
-
-
 
 }
 
 
 //
-function handleEventPoint() {
+function handleEventPoint(eventQueue,stateStructure,p) {
+
+  let result = [];
+  //if U(p) or C(p) !== 0 L(p)
+  result.push({point:p,lines:[]})
+
+  findNewEvent(eventQueue,stateStructure,p)
 
 
-  findNewEvent()
-  
+
 }
 
 // 
-function findNewEvent() {
+function findNewEvent(eventPointQueue,stateStructure,p) {
+
+  let s = stateStructure.getLeftNeibor(p);
+  let s1 = stateStructure.getRightNeibor(p);
+  // s
+  if(hasIntersection(s,p)){
+    // 
+    let intersectionPoint = intersection(s,s1)
+    eventPointQueue.push(intersectionPoint);
+  }
 
 }
 
