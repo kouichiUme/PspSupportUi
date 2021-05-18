@@ -127,6 +127,9 @@ function findIntersection(lines) {
 
     // ? selfBalanced treeがおかしい？
     handleEventPoint(eventPointQueue,stateStructure,p)
+
+    // selfBalanced 
+
   }
 
 }
@@ -155,8 +158,13 @@ function findNewEvent(eventPointQueue,stateStructure,p) {
     // 
     let intersectionPoint = intersection(s,s1)
     eventPointQueue.push(intersectionPoint);
+
+    intersectionPoint = intersection()
   }
 
+  if(hasIntersection(p,s1)){
+    
+  }
 }
 
 
