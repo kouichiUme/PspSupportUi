@@ -113,6 +113,10 @@ class SelfBalancedTree {
 }
 
 
+
+
+
+
 function findIntersection(lines) {
 
   let eventPointQueue = new BSTree()
@@ -126,7 +130,7 @@ function findIntersection(lines) {
   while ((p == eventPointQueue.pop()) !== null) {
 
     // ? selfBalanced treeがおかしい？
-    handleEventPoint(eventPointQueue,stateStructure,p)
+    handleEventPoint(eventPointQueue, stateStructure, p)
 
     // selfBalanced 
 
@@ -136,34 +140,42 @@ function findIntersection(lines) {
 
 
 //
-function handleEventPoint(eventQueue,stateStructure,p) {
+function handleEventPoint(eventQueue, stateStructure, p) {
 
   let result = [];
-  //if U(p) or C(p) !== 0 L(p)
-  result.push({point:p,lines:[]})
+  if (upPointOfLine(p) + containLineSegment(p) !== 0) {
 
-  findNewEvent(eventQueue,stateStructure,p)
+  } else if (p) {
+    result.push({ point: p, lines: [] })
+    // if 
+    findNewEvent(eventQueue, stateStructure, p)
 
+  } else (lowerEndOfLine(p))
+  {
+ 
+    //then 
+    deleteFrom(stateStructure, p)
 
+  }
 
 }
 
 // 
-function findNewEvent(eventPointQueue,stateStructure,p) {
+function findNewEvent(eventPointQueue, stateStructure, p) {
 
   let s = stateStructure.getLeftNeibor(p);
   let s1 = stateStructure.getRightNeibor(p);
   // s
-  if(hasIntersection(s,p)){
+  if (hasIntersection(s, p)) {
     // 
-    let intersectionPoint = intersection(s,s1)
+    let intersectionPoint = intersection(s, s1)
     eventPointQueue.push(intersectionPoint);
 
     intersectionPoint = intersection()
   }
 
-  if(hasIntersection(p,s1)){
-    
+  if (hasIntersection(p, s1)) {
+
   }
 }
 
