@@ -108,6 +108,13 @@ function testBstree() {
 
 }
 
+// semi balanced binary tree 
+class RedBackTree{
+
+  constructor(){}
+
+}
+
 class SelfBalancedTree {
 
 }
